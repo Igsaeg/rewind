@@ -15,7 +15,7 @@ export default function Content({ selected }) {
         <div className={styles.content} ref={contentRef}>
             <div>
                 {album[selected].map((img, i) => (
-                    <img key={i} src={img} />
+                    <img key={i} src={img} loading="lazy" decoding="async" />
                 ))}
             </div>
         </div>
