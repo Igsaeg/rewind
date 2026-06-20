@@ -1,0 +1,39 @@
+.nav {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--surface-strong);
+    border-right: 2px solid var(--frosted);
+    padding: 1.5rem 1rem 0;
+}
+
+.nav button {
+    color: var(--faint);
+    font-family: Explora;
+    font-size: 2.2rem;
+    font-weight: 600;
+    background: none;
+    border: none;
+    height: fit-content;
+    padding: 0.1rem 0.6rem;
+    border-radius: 1rem;
+    transition: var(--transition-btn);
+}
+
+.nav button:not(.nav .selected):hover { background-color: var(--frosted); }
+
+.nav .selected {
+    background-color: var(--frosted-sel);
+    color: var(--text);
+}
+
+.nav button:active { transform: scale(0.92); }
+
+.nav .past { color: var(--muted); }
+
+.nav svg { 
+    align-self: center;
+    margin: 0.3rem 0;
+    stroke: var(--faint); 
+}
+
+.nav .past-line { stroke: var(--muted); }

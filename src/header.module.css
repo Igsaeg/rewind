@@ -1,0 +1,46 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    background-color: var(--surface-strong);
+    padding: 0.7rem 8vw;
+    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.12);
+    position: relative;
+    z-index: 2;
+}
+
+.header > div {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.header h3 {
+    font-family: Pinyon Script;
+    font-size: 2rem;
+    color: var(--text);
+}
+
+.header img {
+    display: block;
+    fill: aqua ;
+    width: 2.1rem;
+    height: 2.1rem;
+    border-radius: 50%;
+}
+
+.header .svg {
+    display: block;
+    color: var(--text);
+    width: 1.6rem;
+}
+
+.header button {
+    background: none;
+    border: none;
+    height: fit-content;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    transition: var(--transition-btn);
+}
+.header button:hover { background-color: var(--frosted); }
+.header button:active { transform: scale(0.92); }
