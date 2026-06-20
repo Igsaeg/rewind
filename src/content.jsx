@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react"
 import styles from "./content.module.css"
 import { album } from "./assets/imageData.js"
+import LazyImage from "./LazyImage.jsx"
 
 export default function Content({ selected }) {
     const contentRef = useRef(null);
@@ -13,9 +14,16 @@ export default function Content({ selected }) {
 
     return (
         <div className={styles.content} ref={contentRef}>
-            <div>
-                {album[selected].map((img, i) => (
-                    <img key={i} src={img} loading="lazy" decoding="async" />
+            <div key={selected}>
+                {album[selected].map((imageSet, i) => (
+                    <LazyImage
+                        key={`${selected}-${i}`}
+                        thumbSrc={imageSet.thumb}
+                        smallSrc={imageSet.small}
+                        mediumSrc={imageSet.medium}
+                        largeSrc={imageSet.large}
+                        alt={`Image ${i}`}
+                    />
                 ))}
             </div>
         </div>

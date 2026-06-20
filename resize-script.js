@@ -1,27 +1,33 @@
 import sharp from 'sharp';
 import fs from 'fs';
 
-const folders = ['g7', 'g8', 'g9', 'g10'];
+const FOLDERS = ['g7', 'g8', 'g9', 'g10'];
+const SIZES = [
+  { suffix: 'thumb', width: 40, quality: 50 },
+  { suffix: 'small', width: 250, quality: 70 },
+  { suffix: 'medium', width: 500, quality: 75 },
+  { suffix: 'large', width: 800, quality: 80 }
+];
 
-async function run() {
-  for (const folder of folders) {
+(async () => {
+  for (const folder of FOLDERS) {
     const inputDir = `src/assets/${folder}`;
-    const outputDir = `src/assets/${folder}_thumb`;
-
     if (!fs.existsSync(inputDir)) continue;
-    if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
 
-    const files = fs.readdirSync(inputDir);
-    for (const file of files) {
-      if (!file.endsWith('.jpg')) continue;
-      await sharp(`${inputDir}/${file}`)
-        .resize({ width: 500 })
-        .jpeg({ quality: 75 })
-        .toFile(`${outputDir}/${file}`);
-      console.log(`Resized: ${folder}/${file}`);
+    const files = fs.readdirSync(inputDir).filter(f => f.endsWith('.jpg'));
+    
+    for (const { suffix, width, quality } of SIZES) {
+      const outputDir = `src/assets/${folder}${suffix}`;
+      fs.mkdirSync(outputDir, { recursive: true });
+
+      for (const file of files) {
+        await sharp(`${inputDir}/${file}`)
+          .resize({ width, fit: 'cover' })
+          .jpeg({ quality, progressive: true })
+          .toFile(`${outputDir}/${file}`);
+        console.log(`✓ ${folder}/${file} → ${suffix}`);
+      }
     }
   }
-  console.log('Done!');
-}
-
-run();
+  console.log('✓ Done!');
+})();

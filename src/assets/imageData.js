@@ -1,13 +1,24 @@
-const g7 = import.meta.glob('./g7_thumb/*.jpg', { eager: true });
-const g8 = import.meta.glob('./g8_thumb/*.jpg', { eager: true });
-const g9 = import.meta.glob('./g9_thumb/*.jpg', { eager: true });
-const g10 = import.meta.glob('./g10_thumb/*.jpg', { eager: true });
+const grades = [7, 8, 9, 10];
+const sizes = ['thumb', 'small', 'medium', 'large'];
 
-const toArray = (glob) => Object.values(glob).map(m => m.default);
-
-export const album = {
-    7: toArray(g7),
-    8: toArray(g8),
-    9: toArray(g9),
-    10: toArray(g10),
+const loadImages = () => {
+  const result = {};
+  
+  grades.forEach(grade => {
+    const sizeImages = sizes.map(size => 
+      Object.values(import.meta.glob(`./${grade}${size}/*.jpg`, { eager: true }))
+        .map(m => m.default)
+    );
+    
+    result[grade] = sizeImages[0].map((thumb, i) => ({
+      thumb: sizeImages[0][i],
+      small: sizeImages[1][i],
+      medium: sizeImages[2][i],
+      large: sizeImages[3][i]
+    }));
+  });
+  
+  return result;
 };
+
+export const album = loadImages();
