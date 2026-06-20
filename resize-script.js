@@ -3,10 +3,10 @@ import fs from 'fs';
 
 const FOLDERS = ['g7', 'g8', 'g9', 'g10'];
 const SIZES = [
-  { suffix: 'thumb', width: 40, quality: 50 },
-  { suffix: 'small', width: 250, quality: 70 },
-  { suffix: 'medium', width: 500, quality: 75 },
-  { suffix: 'large', width: 800, quality: 80 }
+  { suffix: '_thumb', width: 40, quality: 50 },
+  { suffix: '_small', width: 250, quality: 70 },
+  { suffix: '_medium', width: 500, quality: 75 },
+  { suffix: '_large', width: 800, quality: 80 }
 ];
 
 (async () => {
