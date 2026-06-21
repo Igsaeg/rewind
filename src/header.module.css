@@ -2,7 +2,7 @@
     display: flex;
     justify-content: space-between;
     background-color: var(--surface-strong);
-    padding: 0.7rem 8vw;
+    padding: clamp(0.4rem, 1vw, 0.7rem) 7vw;
     box-shadow: 0 0px 5px rgba(0, 0, 0, 0.12);
     position: relative;
     z-index: 2;
@@ -11,7 +11,7 @@
 .header > div {
     display: flex;
     align-items: center;
-    gap: clamp(0.8rem, 1vw, 1.2rem);
+    gap: clamp(0rem, 1vw, 1.2rem);
 }
 
 .header h3 {
@@ -22,16 +22,15 @@
 
 .header img {
     display: block;
-    fill: aqua ;
-    width: 2.1rem;
-    height: 2.1rem;
+    width: 2rem;
+    height: 2rem;
     border-radius: 50%;
 }
 
 .header .svg {
     display: block;
     color: var(--text);
-    width: 1.6rem;
+    width: 1.5rem;
 }
 
 .header button {
