@@ -11,12 +11,12 @@
 .header > div {
     display: flex;
     align-items: center;
-    gap: 1.2rem;
+    gap: clamp(0.8rem, 1vw, 1.2rem);
 }
 
 .header h3 {
     font-family: Pinyon Script;
-    font-size: 2rem;
+    font-size: clamp(1.6rem, 2vw, 2rem);
     color: var(--text);
 }
 

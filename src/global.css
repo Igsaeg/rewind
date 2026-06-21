@@ -8,6 +8,8 @@
     --faint: #ababab;
 
     --transition-btn: 150ms ease;
+
+    --max-width: 768px;
 }
 
 [data-theme="dark"] {
@@ -62,3 +64,10 @@ button {
 }
 
 .main > * { min-width: 0; }
+
+@media (max-width: 768px) {
+    .main {
+        flex-direction: column-reverse;
+
+    }
+}

@@ -19,10 +19,10 @@ export default function SideBar({ selected, setSelected }) {
                     </button>
 
                     {i < grades.length - 1 && (
-                        <svg viewBox="0 11 20 13" key={`line-${i}`} className={selected > grade ? styles['past-line'] : ""} fill="none">
+                        <svg viewBox="5 11 10 10" key={`line-${i}`} className={selected > grade ? styles['past-line'] : ""} fill="none">
                             <path
-                                d="M10,0 C2,6 18,12 10,18 C2,24 18,30 10,40"
-                                strokeWidth="0.8"
+                                d="M10,11 C7,14 13,17 10,20 C7,23 13,26 10,29"
+                                strokeWidth="0.6"
                                 strokeLinecap="round"
                             />
                         </svg>

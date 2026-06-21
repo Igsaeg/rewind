@@ -10,3 +10,10 @@
     column-width: 200px;
     column-gap: 1rem;
 }
+
+@media (max-width: 768px) {
+    .content > div { column-width: 160px; }
+}
+@media (max-width: 375px) {
+    .content > div { column-width: 100px; }
+}
