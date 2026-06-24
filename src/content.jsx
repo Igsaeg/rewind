@@ -1,7 +1,43 @@
-import { useEffect, useRef } from "react"
+import { useState, useEffect, useRef } from 'react'
 import styles from "./content.module.css"
 import { album } from "./assets/imageData.js"
-import LazyImage from "./LazyImage.jsx"
+
+function LazyImage({ imageSet, index, selected }) {
+    const [src, setSrc] = useState(imageSet.thumb)
+    const ref = useRef(null)
+
+    useEffect(() => {
+        setSrc(imageSet.thumb)
+
+        const observer = new IntersectionObserver(([entry]) => {
+            if (!entry.isIntersecting) return
+
+            const fullImage = new Image()
+            fullImage.src = imageSet.loaded
+
+            fullImage.onload = () => {
+                setSrc(imageSet.loaded)
+            }
+
+            observer.disconnect()
+        }, { threshold: 0.01 })
+
+        if (ref.current) observer.observe(ref.current)
+        return () => observer.disconnect()
+    }, [imageSet.loaded, imageSet.thumb, selected])
+
+    return (
+        <img
+            key={`${selected}-${index}`}
+            ref={ref}
+            src={src}
+            alt={`Image ${index}`}
+            decoding="async"
+            loading="lazy"
+            className={styles.image}
+        />
+    )
+}
 
 export default function Content({ selected }) {
     const contentRef = useRef(null);
@@ -18,11 +54,9 @@ export default function Content({ selected }) {
                 {album[selected].map((imageSet, i) => (
                     <LazyImage
                         key={`${selected}-${i}`}
-                        thumbSrc={imageSet.thumb}
-                        smallSrc={imageSet.small}
-                        mediumSrc={imageSet.medium}
-                        largeSrc={imageSet.large}
-                        alt={`Image ${i}`}
+                        imageSet={imageSet}
+                        index={i}
+                        selected={selected}
                     />
                 ))}
             </div>
