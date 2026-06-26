@@ -14,7 +14,7 @@ export default function App() {
             <Header />
             <div className='main'>
                 <SideBar selected={selected} setSelected={setSelected} />
-                <Content selected={selected} />
+                <Content  selected={selected}/>
             </div>
         </>
     );

@@ -27,7 +27,7 @@
     border-radius: 50%;
 }
 
-.header .svg {
+.header svg {
     display: block;
     color: var(--text);
     width: 1.5rem;
@@ -41,5 +41,123 @@
     border-radius: 1rem;
     transition: var(--transition-btn);
 }
-.header button:hover { background-color: var(--frosted); }
+
+.header button:hover:not(.active) { background-color: var(--frosted); }
+
+.header .active { background-color: var(--frosted-sel); }
+
 .header button:active { transform: scale(0.92); }
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(0.2rem);
+    }
+    50% { opacity: 1; }
+    to {
+        opacity: 1;
+        transform: 0;
+    }
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+
+    display: flex;
+    justify-content: flex-end;
+    pointer-events: none;
+}
+
+.container {
+    background-color: var(--surface-strong);
+    border: 1px solid var(--frosted-sel);
+    border-radius: 1.2rem;
+    width: 20rem;
+    height: fit-content;
+    padding: 1.8rem 1.6rem 2.5rem;
+    margin: calc(3.5rem + 2 * clamp(0.4rem, 1vw, 0.7rem)) 6vw 0 0;
+    font-family: Inter;
+    pointer-events: auto;
+    animation: fadeUp 0.5s ease;
+}
+
+.container h2 {
+    color: var(--text);
+    font-size: 1.1rem;
+}
+
+.container a {
+    color: var(--text);
+    text-decoration: none;
+}
+
+.container a:hover { text-decoration: underline; }
+
+.container p {
+    color: var(--muted);
+    font-size: 0.8rem;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.container img {
+    display: block;
+    width: 3.2rem;
+    height: 3.2rem;
+    border-radius: 50%;
+}
+
+.divider {
+    background-color: var(--faint);
+    width: 100%;
+    height: 1px;
+    margin: 1.1rem 0;
+}
+
+.pillflex {
+    display: flex;
+    gap: 0.4rem;
+    margin-top: 1.5rem;
+}
+
+.pillflex > * {
+    display: flex;
+    gap: 0.2rem;
+    background-color: var(--frosted-sel);
+    border: 1px solid var(--faint);
+    border-radius: 0.5rem;
+    padding: 0.2rem 0.4rem;
+    cursor: default;
+}
+
+.pillflex svg {
+    display: block;
+    color: var(--text);
+    width: 0.9rem;
+}
+
+.pillflex p {
+    font-size: 0.7rem;
+}
+
+@media (max-width: 375px) {
+    .modal {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+
+        display: flex;
+        justify-content: center;
+        pointer-events: none;
+    }
+    .container {
+        width: 19rem;
+        margin: calc(3.5rem + 2 * clamp(0.4rem, 1vw, 0.7rem)) 0 0 0;
+    }
+}

@@ -1,14 +1,13 @@
 import { useState, useEffect, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import styles from "./content.module.css"
 import { album } from "./assets/imageData.js"
 
-function LazyImage({ imageSet, index, selected }) {
+function LazyImage({ imageSet, index, selected, setActiveImageSrc }) {
     const [src, setSrc] = useState(imageSet.thumb)
     const ref = useRef(null)
 
     useEffect(() => {
-        setSrc(imageSet.thumb)
-
         const observer = new IntersectionObserver(([entry]) => {
             if (!entry.isIntersecting) return
 
@@ -35,18 +34,22 @@ function LazyImage({ imageSet, index, selected }) {
             decoding="async"
             loading="lazy"
             className={styles.image}
+            onClick={(e) => {
+                e.preventDefault()
+                e.stopPropagation()
+                setActiveImageSrc(imageSet.original)
+            }}
         />
     )
 }
 
 export default function Content({ selected }) {
-    const contentRef = useRef(null);
+    const [activeImageSrc, setActiveImageSrc] = useState(null)
+    const contentRef = useRef(null)
 
     useEffect(() => {
-        if (contentRef.current) {
-            contentRef.current.scrollTop = 0;
-        }
-    }, [selected]);
+        if (contentRef.current) { contentRef.current.scrollTop = 0 }
+    }, [selected])
 
     return (
         <div className={styles.content} ref={contentRef}>
@@ -57,9 +60,17 @@ export default function Content({ selected }) {
                         imageSet={imageSet}
                         index={i}
                         selected={selected}
+                        setActiveImageSrc={setActiveImageSrc}
                     />
                 ))}
             </div>
+
+            {activeImageSrc && createPortal(
+                <div className={styles.modal} onClick={() => setActiveImageSrc(null)}>
+                    <img src={activeImageSrc} alt="" onClick={(e) => e.stopPropagation()} />
+                </div>,
+                document.body
+            )}
         </div>
-    );
+    )
 }

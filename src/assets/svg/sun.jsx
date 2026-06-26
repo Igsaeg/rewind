@@ -1,4 +1,4 @@
-import styles from "../header.module.css"
+import styles from "../../header.module.css"
 
 export default function Sun(props) {
     return (
