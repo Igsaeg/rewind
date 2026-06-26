@@ -76,7 +76,7 @@
     border-radius: 1.2rem;
     width: 20rem;
     height: fit-content;
-    padding: 1.8rem 1.6rem 2.5rem;
+    padding: 1.8rem 1.6rem 2.2rem;
     margin: calc(3.5rem + 2 * clamp(0.4rem, 1vw, 0.7rem)) 6vw 0 0;
     font-family: Inter;
     pointer-events: auto;
@@ -93,7 +93,10 @@
     text-decoration: none;
 }
 
-.container a:hover { text-decoration: underline; }
+.container a:hover {
+    color: var(--text);
+    text-decoration: underline;
+}
 
 .container p {
     color: var(--muted);
@@ -145,6 +148,12 @@
 .pillflex p {
     font-size: 0.7rem;
 }
+
+.flex2 {
+    display: flex;
+    justify-content: space-between;
+}
+.flex2 a { color: var(--muted); }
 
 @media (max-width: 375px) {
     .modal {

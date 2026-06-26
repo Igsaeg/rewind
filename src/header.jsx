@@ -37,8 +37,9 @@ function Modal({ theme }) {
                     </div>
                 </div>
                 <div className={styles.divider}></div>
-                    <p>Made with {theme === "light" ? "🖤": "🤍"} · 2026</p>
                 <div className={styles.flex2}>
+                    <p>Made with {theme === "light" ? "🖤": "🤍"} · 2026</p>
+                    <p><a href="https://github.com/Igsaeg/rewind">view source</a></p>
                 </div>
             </div>
         </div>
