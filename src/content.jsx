@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import styles from "./content.module.css"
-import { album } from "./assets/imageData.js"
+import { album } from "./assets/image-data.js"
 
 function LazyImage({ imageSet, index, selected, setActiveImageSrc }) {
     const [src, setSrc] = useState(imageSet.thumb)
